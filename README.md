@@ -13,6 +13,7 @@ A Go microservice that receives contact form submissions and sends emails via SM
 
 ## Project Structure
 
+```
 cmd/email-service/main.go
 internal/
 ├── config/ # Configuration loader
@@ -25,11 +26,11 @@ docker-compose.yml
 go.mod
 .env
 README.md
-
+```
 ## Configuration
 
 Create a `.env` file in the project root with the following variables:
-
+```yaml
 SMTP_HOST=smtp.example.com
 SMTP_PORT=587
 SMTP_USER=your_smtp_username
@@ -37,7 +38,7 @@ SMTP_PASS=your_smtp_password
 FROM_ADDRESS=contact@example.com
 
 APP_PORT=8080
-
+```
 Make sure `.env` is added to `.gitignore` to avoid committing secrets.
 
 ## Running Locally
