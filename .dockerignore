@@ -1,0 +1,43 @@
+# Binaries
+*.exe
+*.exe~
+*.dll
+*.so
+*.dylib
+*.test
+*.out
+
+# Vendor directory (if using Go modules, usually not needed)
+vendor/
+
+# Build output
+bin/
+build/
+
+# Dependency directories
+/pkg/
+
+# Git files
+.git
+.gitignore
+
+# IDE/editor files
+.vscode/
+.idea/
+*.swp
+*.swo
+*.DS_Store
+
+# Environment files
+.env
+.env.local
+.env.*.local
+
+# Logs and temp files
+*.log
+tmp/
+temp/
+
+# Docker files (if you want to exclude)
+Dockerfile*
+docker-compose*.yml
