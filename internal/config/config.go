@@ -27,6 +27,6 @@ func GetConfig() *Config {
         SMTPPort: port,
         SMTPUser: os.Getenv("SMTP_USER"),
         SMTPPass: os.Getenv("SMTP_PASS"),
-        FromAddr: os.Getenv("FROM_ADDR"),
+        FromAddr: os.Getenv("FROM_ADDRESS"),
     }
 }
