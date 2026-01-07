@@ -32,12 +32,11 @@ README.md
 Create a `.env` file in the project root with the following variables:
 ```yaml
 SMTP_HOST=smtp.example.com
-SMTP_PORT=587
+SMTP_PORT=6767
 SMTP_USER=your_smtp_username
 SMTP_PASS=your_smtp_password
 FROM_ADDRESS=contact@example.com
-
-APP_PORT=8080
+APP_PORT=6969
 ```
 Make sure `.env` is added to `.gitignore` to avoid committing secrets.
 
