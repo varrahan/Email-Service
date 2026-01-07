@@ -31,3 +31,6 @@ go.work.sum
 # Editor/IDE
 # .idea/
 .vscode/
+
+# Notes that I take while developing
+todo.txt
