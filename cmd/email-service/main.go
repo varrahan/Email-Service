@@ -19,9 +19,9 @@ func main() {
 
 	cfg := config.GetConfig()
 
-	smtpSender := sender.NewSmtpSender(cfg.SMTPHost, cfg.SMTPPort, cfg.SMTPUser, cfg.SMTPPass, cfg.ToAddr, cfg.FromAddr)
+	smtpSender := sender.NewSmtpSender(cfg.SMTPHost, cfg.SMTPPort, cfg.SMTPUser, cfg.SMTPPass, cfg.ToAddr, cfg.FromAddr, logger.Log.Named("Sender"))
 	emailService := service.NewEmailService(smtpSender, logger.Log.Named("Service"))
-	emailHandler := handler.NewHandler(emailService)
+	emailHandler := handler.NewEmailHandler(emailService, logger.Log.Named("Handler"))
 
 	router := gin.Default()
 	router.POST("/send", emailHandler.SendEmail)
