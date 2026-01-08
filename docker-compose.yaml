@@ -10,5 +10,6 @@ services:
       - SMTP_PORT=${SMTP_PORT}
       - SMTP_USER=${SMTP_USER}
       - SMTP_PASS=${SMTP_PASS}
+      - TO_ADDRESS=${TO_ADDRESS}
       - FROM_ADDRESS=${FROM_ADDRESS}
     restart: unless-stopped
