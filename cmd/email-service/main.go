@@ -16,10 +16,10 @@ func main() {
 	logger.Init()
 	defer logger.Sync()
 	zap.RedirectStdLog(logger.Log)
+	
+	config := config.LoadConfig()
 
-	cfg := config.GetConfig()
-
-	smtpSender := sender.NewSmtpSender(cfg.SMTPHost, cfg.SMTPPort, cfg.SMTPUser, cfg.SMTPPass, cfg.ToAddr, cfg.FromAddr, logger.Log.Named("Sender"))
+	smtpSender := sender.NewSmtpSender(config.SMTPHost, config.SMTPPort, config.SMTPUser, config.SMTPPass, config.ToAddr, config.FromAddr, logger.Log.Named("Sender"))
 	emailService := service.NewEmailService(smtpSender, logger.Log.Named("Service"))
 	emailHandler := handler.NewEmailHandler(emailService, logger.Log.Named("Handler"))
 
