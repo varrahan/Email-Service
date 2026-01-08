@@ -3,24 +3,31 @@ package main
 import (
 	"email-service/internal/config"
 	"email-service/internal/handler"
+	"email-service/internal/logger"
 	"email-service/internal/sender"
 	"email-service/internal/service"
-	"log"
 
+
+	"go.uber.org/zap"
 	"github.com/gin-gonic/gin"
 )
 
 func main() {
+	logger.Init()
+	defer logger.Sync()
+	zap.RedirectStdLog(logger.Log)
+
 	cfg := config.GetConfig()
 
 	smtpSender := sender.NewSmtpSender(cfg.SMTPHost, cfg.SMTPPort, cfg.SMTPUser, cfg.SMTPPass, cfg.ToAddr, cfg.FromAddr)
-	emailService := service.NewEmailService(smtpSender)
-	emailHandler := handler.New(emailService)
+	emailService := service.NewEmailService(smtpSender, logger.Log.Named("Service"))
+	emailHandler := handler.NewHandler(emailService)
 
 	router := gin.Default()
 	router.POST("/send", emailHandler.SendEmail)
 
 	if err := router.Run(":8080"); err != nil {
-		log.Fatal(err)
+		logger.Log.Fatal("Email service stopped with error", zap.Error(err))
 	}
+	logger.Log.Info("Email service stopped gracefully")
 }
