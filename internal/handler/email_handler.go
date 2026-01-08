@@ -11,7 +11,7 @@ type Handler struct {
 	emailService *service.EmailService
 }
 
-func New(emailService *service.EmailService) *Handler {
+func NewHandler(emailService *service.EmailService) *Handler {
 	return &Handler{emailService: emailService}
 }
 
