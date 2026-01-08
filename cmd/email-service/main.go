@@ -13,7 +13,7 @@ import (
 func main() {
 	cfg := config.GetConfig()
 
-	smtpSender := sender.NewSmtpSender(cfg.SMTPHost, cfg.SMTPPort, cfg.SMTPUser, cfg.SMTPPass, cfg.FromAddr)
+	smtpSender := sender.NewSmtpSender(cfg.SMTPHost, cfg.SMTPPort, cfg.SMTPUser, cfg.SMTPPass, cfg.ToAddr, cfg.FromAddr)
 	emailService := service.NewEmailService(smtpSender)
 	emailHandler := handler.New(emailService)
 
