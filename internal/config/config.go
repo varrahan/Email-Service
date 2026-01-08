@@ -14,7 +14,7 @@ type Config struct {
     SMTPPass    string
     ToAddr      string // Personal or service email
     FromAddr    string // Email connected to SMTP provider
-    AppPort     int    // Port running the application
+    AppPort     string    // Port running the application
 }
 
 func LoadConfig() *Config {
@@ -26,11 +26,10 @@ func LoadConfig() *Config {
 		smtpPort = 587
 	}
 
-    appPortStr := os.Getenv("APP_PORT")
-	appPort, err := strconv.Atoi(appPortStr)
-	if err != nil {
-		appPort = 8080
-	}
+    appPort := os.Getenv("APP_PORT")
+    if appPort == "" {
+        appPort = "8080"
+    }
 
     return &Config{
 		SMTPHost: os.Getenv("SMTP_HOST"),
@@ -39,7 +38,7 @@ func LoadConfig() *Config {
         SMTPPass: os.Getenv("SMTP_PASS"),
         ToAddr: os.Getenv("TO_ADDRESS"),
         FromAddr: os.Getenv("FROM_ADDRESS"),
-        AppPort: appPort,
+        AppPort: ":" + appPort,
     } 
 }
 
