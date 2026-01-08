@@ -1,7 +1,6 @@
 package config
 
 import (
-	"fmt"
 	"os"
 	"strconv"
 )
@@ -19,7 +18,6 @@ func GetConfig() *Config {
     portStr := os.Getenv("PORT")
 	port, err := strconv.Atoi(portStr)
 	if err != nil {
-		fmt.Println("Error converting port:", err)
 		port = 8000
 	}
 
