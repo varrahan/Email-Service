@@ -33,7 +33,7 @@ func NewSmtpSender(host string, port int, user, pass, to string, from string) *S
 
 func (s *SmtpSender) Send(ctx context.Context, email model.Email) error {
 	m := mail.NewMsg()
-	if err := m.From(s.user); err != nil {
+	if err := m.From(s.fromAddr); err != nil {
 		return err
 	}
 	if err := m.To(s.toAddr); err != nil { 
