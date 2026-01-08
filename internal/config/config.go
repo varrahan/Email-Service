@@ -7,11 +7,12 @@ import (
 )
 
 type Config struct {
-    SMTPHost     string
-    SMTPPort     int
-    SMTPUser     string
-    SMTPPass     string
-    FromAddr	 string
+    SMTPHost    string
+    SMTPPort    int
+    SMTPUser    string
+    SMTPPass    string
+    ToAddr      string // Personal or service email
+    FromAddr    string // Email connected to SMTP provider
 }
 
 func GetConfig() *Config {
@@ -27,6 +28,7 @@ func GetConfig() *Config {
         SMTPPort: port,
         SMTPUser: os.Getenv("SMTP_USER"),
         SMTPPass: os.Getenv("SMTP_PASS"),
+        ToAddr: os.Getenv("TO_ADDRESS"),
         FromAddr: os.Getenv("FROM_ADDRESS"),
     }
 }
