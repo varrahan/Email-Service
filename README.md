@@ -18,6 +18,7 @@ cmd/email-service/main.go
 internal/
 ├── config/ # Configuration loader
 ├── handler/ # HTTP handlers
+├── logger/ # Logging middleware
 ├── model/ # Email data models
 ├── sender/ # SMTP sender implementation
 └── service/ # Business logic
