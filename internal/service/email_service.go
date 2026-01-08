@@ -28,11 +28,11 @@ func (s *EmailService) SendContactEmail(ctx context.Context, email model.Email) 
 
 	err := s.sender.Send(ctx,email)
 	if err != nil {
-		s.logger.Error("Failed to send email",
+		s.logger.Error(
+			"Failed to send email",
 			zap.String("sender", email.Email),
 			zap.Error(err),
 		)
 	}
-
 	return nil
 }
