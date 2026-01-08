@@ -26,7 +26,7 @@ func main() {
 	router := gin.Default()
 	router.POST("/send", emailHandler.SendEmail)
 
-	if err := router.Run(":8080"); err != nil {
+	if err := router.Run(config.AppPort); err != nil {
 		logger.Log.Fatal("Email service stopped with error", zap.Error(err))
 	}
 	logger.Log.Info("Email service stopped gracefully")
