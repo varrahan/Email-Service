@@ -1,5 +1,5 @@
 # Build stage
-FROM golang:1.21-alpine AS builder
+FROM golang:1.23.6-alpine AS builder
 
 WORKDIR /app
 
@@ -27,7 +27,7 @@ RUN apk --no-cache add ca-certificates
 WORKDIR /root/
 
 # Copy binary from builder
-COPY --from=builder /app/portfolio-backend .
+COPY --from=builder /app/email-service .
 
 # Run
-CMD ["./portfolio-backend"]
+CMD ["./email-service"]
