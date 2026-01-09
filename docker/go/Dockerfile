@@ -30,7 +30,7 @@ WORKDIR /root/
 COPY --from=builder /app/email-service .
 
 # Copy go entrypoint script
-COPY service-entrypoint.sh /docker-entrypoint.sh
+COPY docker/go/entrypoint.sh /docker-entrypoint.sh
 RUN chmod +x /docker-entrypoint.sh
 
 # Run script
