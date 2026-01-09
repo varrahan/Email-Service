@@ -3,6 +3,7 @@ package config
 import (
 	"os"
 	"strconv"
+    "errors"
 
     "github.com/joho/godotenv"
 )
@@ -17,7 +18,7 @@ type Config struct {
     AppPort     string    // Port running the application
 }
 
-func LoadConfig() *Config {
+func LoadConfig() (*Config, error) {
     godotenv.Load()
 
     smtpPortStr := os.Getenv("SMTP_PORT")
@@ -31,15 +32,36 @@ func LoadConfig() *Config {
         appPort = "4000"
     }
 
+    smtpHost := os.Getenv("SMTP_HOST")
+    if smtpHost == "" {
+        return nil, errors.New("SMTP_HOST environment variable not configured")
+    }
+    smtpUser := os.Getenv("SMTP_USER")
+    if smtpUser == "" {
+        return nil, errors.New("SMTP_USER environment variable not configured")
+    }
+    smtpPass := os.Getenv("SMTP_PASS")
+        if smtpPass == "" {
+        return nil, errors.New("SMTP_PASS environment variable not configured")
+    }
+    toAddr := os.Getenv("TO_ADDRESS")
+    if toAddr == "" {
+        return nil, errors.New("TO_ADDRESS environment variable not configured")
+    }
+    fromAddr := os.Getenv("FROM_ADDRESS")
+    if fromAddr == "" {
+        return nil, errors.New("FROM_ADDRESS environment variable not configured")
+    }  
+
     return &Config{
-		SMTPHost: os.Getenv("SMTP_HOST"),
+		SMTPHost: smtpHost,
         SMTPPort: smtpPort,
-        SMTPUser: os.Getenv("SMTP_USER"),
-        SMTPPass: os.Getenv("SMTP_PASS"),
-        ToAddr: os.Getenv("TO_ADDRESS"),
-        FromAddr: os.Getenv("FROM_ADDRESS"),
+        SMTPUser: smtpUser,
+        SMTPPass: smtpPass,
+        ToAddr: toAddr,
+        FromAddr: fromAddr,
         AppPort: ":" + appPort,
-    } 
+    }, nil
 }
 
 func GetConfig() *Config {
