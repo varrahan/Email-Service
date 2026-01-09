@@ -17,7 +17,10 @@ func main() {
 	defer logger.Sync()
 	zap.RedirectStdLog(logger.Log)
 	
-	config := config.LoadConfig()
+	config, err := config.LoadConfig()
+	if err != nil {
+		logger.Log.Fatal("Environment variables have not been set up correctly", zap.Error(err))
+	}
 
 	smtpSender := sender.NewSmtpSender(config.SMTPHost, config.SMTPPort, config.SMTPUser, config.SMTPPass, config.ToAddr, config.FromAddr, logger.Log.Named("Sender"))
 	emailService := service.NewEmailService(smtpSender, logger.Log.Named("Service"))
