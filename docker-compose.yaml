@@ -1,8 +1,6 @@
 services:
   email-service:
     build: .
-    ports:
-      - "${HOST_PORT}:${APP_PORT}"
     environment:
       - SMTP_HOST=${SMTP_HOST}
       - SMTP_PORT=${SMTP_PORT}
@@ -10,15 +8,19 @@ services:
       - SMTP_PASS=${SMTP_PASS}
       - TO_ADDRESS=${TO_ADDRESS}
       - FROM_ADDRESS=${FROM_ADDRESS}
+      - APP_PORT=${APP_PORT}
     restart: unless-stopped
 
   nginx:
     image: nginx:alpine
     container_name: email-proxy
+    environment:
+      - APP_PORT=${APP_PORT}
+      - NGINX_PORT=${NGINX_PORT}
     ports:
-      - "${NGINX_ENTRY_PORT}:${NGINX_PORT}"
+      - "${HOST_PORT}:${NGINX_PORT}"
     volumes:
-    - ./nginx.conf:/etc/nginx/nginx.conf:ro
+      - ./nginx.template.conf:/etc/nginx/templates/nginx.template.conf:ro
     depends_on:
       - "email-service"
     restart: unless-stopped
