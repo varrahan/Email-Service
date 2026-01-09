@@ -29,5 +29,9 @@ WORKDIR /root/
 # Copy binary from builder
 COPY --from=builder /app/email-service .
 
-# Run
-CMD ["./email-service"]
+# Copy go entrypoint script
+COPY docker-entrypoint-go.sh /docker-entrypoint.sh
+RUN chmod +x /docker-entrypoint.sh
+
+# Run script
+CMD ["/docker-entrypoint.sh"]
