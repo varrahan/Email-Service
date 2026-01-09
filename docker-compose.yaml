@@ -25,7 +25,7 @@ services:
     ports:
       - "${HOST_PORT}:${NGINX_PORT}"
     volumes:
-      - ./nginx.template.conf:/etc/nginx/templates/nginx.template.conf:ro
+      - ./docker/nginx/nginx.template.conf:/etc/nginx/templates/nginx.template.conf:ro
     depends_on:
       - "email-service"
     restart: unless-stopped
