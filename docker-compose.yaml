@@ -2,7 +2,7 @@ services:
   email-service:
     build:
       context: .
-      dockerfile: Dockerfile.go
+      dockerfile: docker/go/Dockerfile
     container_name: email-service
     environment:
       - SMTP_HOST=${SMTP_HOST}
@@ -17,7 +17,7 @@ services:
   nginx:
     build:
       context: .
-      dockerfile: Dockerfile.nginx
+      dockerfile: docker/nginx/Dockerfile
     container_name: email-proxy
     environment:
       - APP_PORT=${APP_PORT}
