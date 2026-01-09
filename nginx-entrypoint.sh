@@ -1,6 +1,7 @@
 #!/bin/sh
 set -e
 
+# Check if env variables are loaded in container
 : "${APP_PORT:?APP_PORT not set}"
 : "${NGINX_PORT:?NGINX_PORT not set}"
 
