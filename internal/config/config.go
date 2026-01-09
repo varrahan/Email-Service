@@ -28,7 +28,7 @@ func LoadConfig() *Config {
 
     appPort := os.Getenv("APP_PORT")
     if appPort == "" {
-        appPort = "8080"
+        appPort = "4000"
     }
 
     return &Config{
