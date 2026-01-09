@@ -19,7 +19,6 @@ docker/
 ├── go/ # Docker file and script for golang app
 └── nginx/ # Docker file and script for nginx
     └── certs/ # Folder to store certs
-
 internal/
 ├── config/ # Configuration loader
 ├── handler/ # HTTP handlers
