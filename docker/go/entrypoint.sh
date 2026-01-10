@@ -2,7 +2,7 @@
 set -e
 
 # Check if env variables are loaded in container
-: "${APP_PORT:?APP_PORT not set}"
+: "${PORT:?PORT not set}"
 : "${SMTP_HOST:?SMTP_HOST not set}"
 : "${SMTP_PORT:?SMTP_PORT not set}"
 : "${SMTP_USER:?SMTP_USER not set}"
