@@ -28,6 +28,7 @@ WORKDIR /root/
 
 # Copy binary from builder
 COPY --from=builder /app/email-service /email-service
+COPY --from=builder /app/templates ./templates
 
 # Run script
 CMD ["/email-service"]
