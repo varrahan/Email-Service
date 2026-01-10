@@ -11,7 +11,7 @@ services:
       - SMTP_PASS=${SMTP_PASS}
       - TO_ADDRESS=${TO_ADDRESS}
       - FROM_ADDRESS=${FROM_ADDRESS}
-      - APP_PORT=${APP_PORT}
+      - PORT=${PORT}
     restart: unless-stopped
 
   nginx:
@@ -20,7 +20,7 @@ services:
       dockerfile: docker/nginx/Dockerfile
     container_name: email-proxy
     environment:
-      - APP_PORT=${APP_PORT}
+      - PORT=${PORT}
       - NGINX_PORT=${NGINX_PORT}
     ports:
       - "${HOST_PORT}:${NGINX_PORT}"
