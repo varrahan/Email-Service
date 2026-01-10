@@ -1,8 +1,9 @@
 package handler
 
 import (
-	"github.com/gin-gonic/gin"
+	"net/http"
 
+	"github.com/gin-gonic/gin"
 	"go.uber.org/zap"
 )
 
@@ -18,6 +19,6 @@ func NewHomeHandler(logger *zap.Logger) *HomeHandler {
 
 func (h *HomeHandler) HandlePage(c *gin.Context) {
 	h.logger.Info("Serving homepage")
-	c.HTML(200, "index.html", gin.H{"message":"Served from handler"})
+	c.HTML(http.StatusOK, "index.html", gin.H{"message": "page successfully loaded"})
 }
 
