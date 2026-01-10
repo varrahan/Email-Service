@@ -7,9 +7,10 @@ import (
 	"email-service/internal/sender"
 	"email-service/internal/service"
 
-
-	"go.uber.org/zap"
 	"github.com/gin-gonic/gin"
+	"github.com/rs/cors"
+	corsGin "github.com/rs/cors/wrapper/gin"
+	"go.uber.org/zap"
 )
 
 func main() {
@@ -28,6 +29,13 @@ func main() {
 	homeHander := handler.NewHomeHandler(logger.Log.Named("Handler"))
 
 	router := gin.Default()
+
+	router.Use(corsGin.New(cors.Options{
+		AllowedOrigins:   []string{config.CORSOrigin},
+		AllowedMethods:   []string{"GET", "POST"},
+		AllowedHeaders:   []string{"Origin", "Authorization", "Content-Type"},
+		AllowCredentials: false,
+	}))
 	router.LoadHTMLFiles("templates/index.html")
 
 	router.GET("/", homeHander.HandlePage)
