@@ -29,7 +29,7 @@ func main() {
 
 	router := gin.Default()
 	router.LoadHTMLFiles("templates/index.html")
-	
+
 	router.GET("/", homeHander.HandlePage)
 	router.POST("/send", emailHandler.SendEmail)
 
