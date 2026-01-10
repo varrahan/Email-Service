@@ -32,7 +32,7 @@ func main() {
 
 	router.Use(corsGin.New(cors.Options{
 		AllowedOrigins:   []string{config.CORSOrigin},
-		AllowedMethods:   []string{"GET", "POST"},
+		AllowedMethods:   []string{"GET", "POST", "OPTIONS"},
 		AllowedHeaders:   []string{"Origin", "Authorization", "Content-Type"},
 		AllowCredentials: false,
 	}))
