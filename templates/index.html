@@ -58,33 +58,33 @@
         </ul>
         <p>Example JSON body:</p>
         <pre>{
-    "name": "John Doe",
-    "email": "john@example.com",
-    "subject": "Hello",
-    "message": "This is a test message"
-}</pre>
+            "name": "John Doe",
+            "email": "john@example.com",
+            "subject": "Hello",
+            "message": "This is a test message"
+        }</pre>
     </div>
 
     <div class="section">
         <h2>Project Structure</h2>
         <pre>
-cmd/email-service/main.go
-docker/
-├── go/       # Golang Dockerfile and scripts
-└── nginx/    # Nginx Dockerfile and scripts
-    └── certs/  # Folder to store certificates
-internal/
-├── config/   # Configuration loader
-├── handler/  # HTTP handlers
-├── logger/   # Logging middleware
-├── model/    # Email data models
-├── sender/   # SMTP sender implementation
-└── service/  # Business logic
-Dockerfile
-docker-compose.yml
-go.mod
-.env
-README.md
+            cmd/email-service/main.go
+            docker/
+            ├── go/       # Golang Dockerfile and scripts
+            └── nginx/    # Nginx Dockerfile and scripts
+                └── certs/  # Folder to store certificates
+            internal/
+            ├── config/   # Configuration loader
+            ├── handler/  # HTTP handlers
+            ├── logger/   # Logging middleware
+            ├── model/    # Email data models
+            ├── sender/   # SMTP sender implementation
+            └── service/  # Business logic
+            Dockerfile
+            docker-compose.yml
+            go.mod
+            .env
+            README.md
         </pre>
     </div>
     <div class="section">
