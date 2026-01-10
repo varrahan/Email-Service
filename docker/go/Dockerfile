@@ -28,6 +28,7 @@ WORKDIR /root/
 
 # Copy binary from builder
 COPY --from=builder /app/email-service .
+COPY --from=builder /app/templates ./templates
 
 # Copy go entrypoint script
 COPY docker/go/entrypoint.sh /docker-entrypoint.sh
