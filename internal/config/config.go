@@ -27,7 +27,7 @@ func LoadConfig() (*Config, error) {
 		smtpPort = 587
 	}
 
-    appPort := os.Getenv("APP_PORT")
+    appPort := os.Getenv("PORT")
     if appPort == "" {
         appPort = "4000"
     }
