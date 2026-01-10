@@ -1,0 +1,94 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Email Service</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            margin: 40px;
+            line-height: 1.6;
+            background-color: #f9f9f9;
+            color: #333;
+        }
+        h1, h2, h3 {
+            color: #2c3e50;
+        }
+        code, pre {
+            background-color: #eee;
+            padding: 2px 6px;
+            border-radius: 4px;
+            font-family: monospace;
+        }
+        pre {
+            padding: 10px;
+            overflow-x: auto;
+        }
+        .section {
+            margin-bottom: 30px;
+        }
+    </style>
+</head>
+<body>
+    <h1>Email Service</h1>
+
+    <div class="section">
+        <p>
+            A Go microservice that receives contact form submissions and sends emails via SMTP.
+        </p>
+    </div>
+
+    <div class="section">
+        <h2>Features</h2>
+        <ul>
+            <li>Receives HTTP POST requests with JSON payload containing <code>name</code>, <code>email</code>, <code>subject</code>, and <code>message</code>.</li>
+            <li>Sends email to a configured recipient address.</li>
+            <li>Sets visitor's email as the <code>Reply-To</code> address for direct replies.</li>
+            <li>Uses Gin framework for HTTP server.</li>
+            <li>Supports SMTP email sending via <code>wneessen/go-mail</code>.</li>
+            <li>Dockerized for easy deployment.</li>
+        </ul>
+    </div>
+
+    <div class="section">
+        <h2>Route</h2>
+        <p>The only route exposed by this service is:</p>
+        <ul>
+            <li><code>POST /send</code> — sends an email to the configured recipient when provided a valid JSON body.</li>
+        </ul>
+        <p>Example JSON body:</p>
+        <pre>{
+    "name": "John Doe",
+    "email": "john@example.com",
+    "subject": "Hello",
+    "message": "This is a test message"
+}</pre>
+    </div>
+
+    <div class="section">
+        <h2>Project Structure</h2>
+        <pre>
+cmd/email-service/main.go
+docker/
+├── go/       # Golang Dockerfile and scripts
+└── nginx/    # Nginx Dockerfile and scripts
+    └── certs/  # Folder to store certificates
+internal/
+├── config/   # Configuration loader
+├── handler/  # HTTP handlers
+├── logger/   # Logging middleware
+├── model/    # Email data models
+├── sender/   # SMTP sender implementation
+└── service/  # Business logic
+Dockerfile
+docker-compose.yml
+go.mod
+.env
+README.md
+        </pre>
+    </div>
+    <div class="section">
+        <p>That’s it! The service only exposes <code>/send</code> for sending emails. All configuration is via environment variables.</p>
+    </div>
+</body>
+</html>
