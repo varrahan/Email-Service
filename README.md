@@ -43,7 +43,7 @@ SMTP_PASS=your_smtp_password
 TO_ADDRESS=personal@example.com
 FROM_ADDRESS=registered_sender@example.com
 # Port your golang application is running inside it's docker container
-APP_PORT=6969
+PORT=6969
 # Port your NGINX image is listening on inside the container
 NGINX_PORT=80
 # Port that allows for external interfacing
