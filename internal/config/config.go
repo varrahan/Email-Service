@@ -15,7 +15,8 @@ type Config struct {
     SMTPPass    string
     ToAddr      string // Personal or service email
     FromAddr    string // Email connected to SMTP provider
-    AppPort     string    // Port running the application
+    AppPort     string // Port running the application
+    CORSOrigin  string // A Single origin, most likely the frontend for the service
 }
 
 func LoadConfig() (*Config, error) {
@@ -51,7 +52,8 @@ func LoadConfig() (*Config, error) {
     fromAddr := os.Getenv("FROM_ADDRESS")
     if fromAddr == "" {
         return nil, errors.New("FROM_ADDRESS environment variable not configured")
-    }  
+    }
+    corsOrigin := os.Getenv("ALLOWED_ORIGIN")
 
     return &Config{
 		SMTPHost: smtpHost,
@@ -61,6 +63,7 @@ func LoadConfig() (*Config, error) {
         ToAddr: toAddr,
         FromAddr: fromAddr,
         AppPort: ":" + appPort,
+        CORSOrigin: corsOrigin,
     }, nil
 }
 
