@@ -25,7 +25,7 @@ services:
     ports:
       - "${HOST_PORT}:${NGINX_PORT}"
     volumes:
-      - ./docker/nginx/nginx.template.conf:/etc/nginx/templates/nginx.template.conf:ro
+      - ./docker/nginx:/etc/nginx/templates:ro
       - ./docker/nginx/certs:/etc/nginx/certs:ro
     depends_on:
       - "email-service"
