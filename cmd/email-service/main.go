@@ -25,8 +25,12 @@ func main() {
 	smtpSender := sender.NewSmtpSender(config.SMTPHost, config.SMTPPort, config.SMTPUser, config.SMTPPass, config.ToAddr, config.FromAddr, logger.Log.Named("Sender"))
 	emailService := service.NewEmailService(smtpSender, logger.Log.Named("Service"))
 	emailHandler := handler.NewEmailHandler(emailService, logger.Log.Named("Handler"))
+	homeHander := handler.NewHomeHandler(logger.Log.Named("Handler"))
 
 	router := gin.Default()
+	router.LoadHTMLFiles("templates/index.html")
+	
+	router.GET("/", homeHander.HandlePage)
 	router.POST("/send", emailHandler.SendEmail)
 
 	if err := router.Run(config.AppPort); err != nil {
