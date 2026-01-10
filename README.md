@@ -42,6 +42,7 @@ SMTP_USER=your_smtp_username
 SMTP_PASS=your_smtp_password
 TO_ADDRESS=personal@example.com
 FROM_ADDRESS=registered_sender@example.com
+ALLOWED_ORIGIN=your_frontend_url
 # Port your golang application is running inside it's docker container
 PORT=6969
 # Port your NGINX image is listening on inside the container
